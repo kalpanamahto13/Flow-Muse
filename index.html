@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowMuse 🌸 - Tune Into Your Flow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="style.css" >
+</head>
+<body>
+    <div id="landing" class="landing">
+        <div class="hero">
+            <h1>FlowMuse 🌸</h1>
+            <p class="tagline">Tune Into Your Flow</p>
+            <p style="font-size: 1.2em; margin-bottom: 40px; max-width: 600px;">Track your moods, cycles, and energy with kindness and calm.</p>
+            <button class="cta-btn" onclick="startApp()">Start Tracking</button>
+        </div>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">💕</div>
+                <h3>Track Moods & Symptoms</h3>
+                <p>Log your daily feelings, sleep, exercise, and symptoms with gentle emoji scales and intuitive forms.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌙</div>
+                <h3>Understand Your Phases</h3>
+                <p>Discover where you are in your cycle and learn what each phase means for your energy and mood.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌸</div>
+                <h3>Get Gentle Self-Care Tips</h3>
+                <p>Receive personalized suggestions and motivation based on your current phase and recent patterns.</p>
+            </div>
+        </div>
+        <footer class="landing-footer"><p>FlowMuse 🌸 - Your data stays on your device. Track with privacy and peace. 💖</p></footer>
+    </div>
+
+    <div id="app" class="app">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">🌸 FlowMuse</div>
+                <div class="nav-menu">
+                    <button class="nav-btn active" onclick="showPage('dashboard')">Dashboard</button>
+                    <button class="nav-btn" onclick="showPage('log')">Daily Log</button>
+                    <button class="nav-btn" onclick="showPage('calendar')">Calendar</button>
+                    <button class="nav-btn" onclick="showPage('insights')">Insights</button>
+                    <button class="nav-btn" onclick="showPage('settings')">Settings</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div id="dashboard" class="page active">
+                <div class="welcome-box" id="greeting"></div>
+                <div class="card">
+                    <h2>Today's Summary</h2>
+                    <div id="phase-display"></div>
+                    <div class="stats-grid">
+                        <div class="stat-card"><div class="stat-label">Current Mood</div><div class="stat-value" id="today-mood">--</div></div>
+                        <div class="stat-card"><div class="stat-label">Sleep Hours</div><div class="stat-value" id="today-sleep">--</div></div>
+                        <div class="stat-card"><div class="stat-label">Exercise</div><div class="stat-value" id="today-exercise">--</div></div>
+                    </div>
+                </div>
+                <div class="card"><h2>Tomorrow's Mood Forecast 🌤️</h2><div class="prediction-box" id="mood-prediction"></div></div>
+                <div class="card"><h2>Self-Care for Today</h2><div class="tips-box" id="self-care-tips"></div><div class="quote-box" id="daily-quote"></div></div>
+                <div class="card"><h2>Your Mood Trends</h2><canvas id="trendChart"></canvas></div>
+            </div>
+
+            <div id="log" class="page">
+                <div class="card">
+                    <h2>Daily Log</h2>
+                    <div class="form-group"><label>Date</label><input type="date" id="log-date"></div>
+                    <div class="form-group">
+                        <label>How are you feeling today?</label>
+                        <div class="mood-selector">
+                            <span class="mood-option" data-mood="5">😄</span>
+                            <span class="mood-option" data-mood="4">🙂</span>
+                            <span class="mood-option" data-mood="3">😐</span>
+                            <span class="mood-option" data-mood="2">😔</span>
+                            <span class="mood-option" data-mood="1">😢</span>
+                        </div>
+                    </div>
+                    <div class="form-group"><label>Sleep Hours</label><input type="number" id="log-sleep" min="0" max="24" step="0.5" placeholder="e.g., 7.5"></div>
+                    <div class="form-group"><label>Exercise Duration (minutes)</label><input type="number" id="log-exercise-duration" min="0" placeholder="e.g., 30"></div>
+                    <div class="form-group"><label>Exercise Type</label><input type="text" id="log-exercise-type" placeholder="e.g., Yoga, Running, Walking"></div>
+                    <div class="form-group">
+                        <label>Symptoms</label>
+                        <div class="symptom-checks" id="symptom-checks">
+                            <label class="symptom-check"><input type="checkbox" value="Cramps"> Cramps</label>
+                            <label class="symptom-check"><input type="checkbox" value="Headache"> Headache</label>
+                            <label class="symptom-check"><input type="checkbox" value="Fatigue"> Fatigue</label>
+                            <label class="symptom-check"><input type="checkbox" value="Bloating"> Bloating</label>
+                            <label class="symptom-check"><input type="checkbox" value="Acne"> Acne</label>
+                            <label class="symptom-check"><input type="checkbox" value="Mood Swings"> Mood Swings</label>
+                        </div>
+                    </div>
+                    <div class="form-group"><label>Notes / Journal</label><textarea id="log-notes" rows="5" placeholder="How was your day? Any thoughts or feelings you want to remember?"></textarea></div>
+                    <button class="btn" onclick="saveLog()">Save Today's Log 💕</button>
+                </div>
+            </div>
+
+            <div id="calendar" class="page">
+                <div class="card">
+                    <h2>Your Cycle Calendar</h2>
+                    <div class="calendar-header">
+                        <button class="nav-btn" onclick="changeMonth(-1)">← Prev</button>
+                        <div class="calendar-month" id="current-month"></div>
+                        <button class="nav-btn" onclick="changeMonth(1)">Next →</button>
+                        <label class="toggle-label">
+                            <input type="checkbox" id="show-predicted-periods" onchange="togglePredictedPeriods()">
+                            Show Predicted Periods
+                        </label>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="calendar-day-header">Sun</div><div class="calendar-day-header">Mon</div><div class="calendar-day-header">Tue</div>
+                        <div class="calendar-day-header">Wed</div><div class="calendar-day-header">Thu</div><div class="calendar-day-header">Fri</div>
+                        <div class="calendar-day-header">Sat</div>
+                    </div>
+                    <div class="calendar-grid" id="calendar-grid"></div>
+                </div>
+            </div>
+
+            <div id="insights" class="page">
+                <div class="card"><h2>Mood & Sleep Correlation</h2><canvas id="correlationChart"></canvas></div>
+                <div class="card"><h2>Recent Patterns</h2><div id="patterns-list"></div></div>
+            </div>
+
+            <div id="settings" class="page">
+                <div class="card">
+                    <h2>Cycle Settings</h2>
+                    <div class="form-group"><label>Your Name</label><input type="text" id="settings-name" placeholder="What should we call you?"></div>
+                    <div class="form-group"><label>Average Cycle Length (days)</label><input type="number" id="settings-cycle-length" min="21" max="45" value="28"></div>
+                    <div class="form-group"><label>Period Duration (days)</label><input type="number" id="settings-period-duration" min="3" max="10" value="5"></div>
+                    <div class="form-group"><label>Last Period Start Date</label><input type="date" id="settings-last-period"></div>
+                    <button class="btn" onclick="saveSettings()">Save Settings 🌸</button>
+                </div>
+                <div class="card">
+                    <h2>Appearance</h2>
+                    <div class="form-group">
+                        <label>Theme</label>
+                        <select id="settings-theme" onchange="changeTheme()">
+                            <option value="light">Light Pastel</option>
+                            <option value="pastel">Pastel Dream</option>
+                            <option value="dark">Soft Dark</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>Privacy & Data</h2>
+                    <p style="margin-bottom: 20px;">💖 Your data stays on your device. FlowMuse never sends your information anywhere.</p>
+                    <button class="btn btn-danger" onclick="clearAllData()">Clear All Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="onboarding-modal" class="modal">
+        <div class="modal-content">
+            <h2 style="color: var(--purple); margin-bottom: 25px;">Welcome to FlowMuse! 🌸</h2>
+            <p style="margin-bottom: 25px; font-size: 1.1em;">Let's set up your cycle tracking to give you the best insights.</p>
+            <div class="form-group"><label>Your Name</label><input type="text" id="onboard-name" placeholder="What should we call you?"></div>
+            <div class="form-group"><label>Average Cycle Length (days)</label><input type="number" id="onboard-cycle-length" min="21" max="45" value="28"></div>
+            <div class="form-group"><label>Period Duration (days)</label><input type="number" id="onboard-period-duration" min="3" max="10" value="5"></div>
+            <div class="form-group"><label>Last Period Start Date</label><input type="date" id="onboard-last-period"></div>
+            <button class="btn" onclick="completeOnboarding()">Get Started 💕</button>
+        </div>
+    </div>
+
+    <div id="day-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeDayModal()">×</span>
+            <h2 id="modal-date"></h2>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
+
