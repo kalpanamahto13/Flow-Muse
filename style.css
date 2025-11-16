@@ -24,8 +24,13 @@
         .app { display: none; min-height: 100vh; background: linear-gradient(135deg, var(--cream) 0%, var(--lavender) 100%); }
         .app.active { display: block; }
         .navbar { background: white; padding: 20px; box-shadow: 0 4px 20px rgba(155, 126, 189, 0.15); position: sticky; top: 0; z-index: 100; }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; position: relative; }
         .nav-brand { font-size: 1.8em; font-weight: 700; color: var(--purple); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; }
+        .hamburger span { width: 25px; height: 3px; background: var(--purple); margin: 3px 0; transition: 0.3s; }
+        .hamburger.active span:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
         .nav-menu { display: flex; gap: 10px; flex-wrap: wrap; }
         .nav-btn { background: linear-gradient(135deg, var(--lavender), var(--blush)); border: none; padding: 12px 25px; border-radius: 30px; color: white; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-size: 0.95em; }
         .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(155, 126, 189, 0.3); }
@@ -96,10 +101,18 @@
         body.theme-dark input, body.theme-dark textarea, body.theme-dark select { background: #4A4A6A; color: #E0E0E0; border-color: #6A6A8A; }
         
         @media (max-width: 768px) {
+            .hero { padding: 40px 20px; }
             .hero h1 { font-size: 2.5em; }
             .hero .tagline { font-size: 1.2em; }
-            .features { padding: 40px 20px; }
-            .nav-container { flex-direction: column; }
+            .cta-btn { padding: 15px 30px; font-size: 1.1em; }
+            .features { padding: 40px 20px; grid-template-columns: 1fr; }
+            .feature-card { padding: 30px; }
+            .feature-icon { font-size: 3em; }
+            .feature-card h3 { font-size: 1.3em; }
+            .landing-footer { padding: 20px; font-size: 0.9em; }
+            .hamburger { display: flex; position: absolute; top: 0; right: 0; }
+            .nav-menu { display: none; flex-direction: column; width: 100%; gap: 15px; margin-top: 15px; }
+            .nav-menu.active { display: flex; }
             .calendar-day { min-height: 50px; font-size: 0.9em; }
             .stats-grid { grid-template-columns: 1fr; }
         }

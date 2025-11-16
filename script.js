@@ -106,9 +106,24 @@
         function showPage(page) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(page).classList.add('active');
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            const navbtn =  document.querySelectorAll('.nav-btn');
+            navbtn.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
+
+            // Close mobile menu after selecting a page
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            navbtn.addEventListener('click', () => toggleMobileMenu(),
+               navMenu.classList.remove('active')
+
+            );
+            if (hamburger.classList.contains('active')) {
+                hamburger.classList.remove('active'); 
+                navMenu.classList.remove('active');
+            }
+
             
+
             if (page === 'dashboard') updateDashboard();
             if (page === 'calendar') renderCalendar();
             if (page === 'insights') updateInsights();
@@ -411,6 +426,13 @@
             else if (theme === 'dark') document.body.classList.add('theme-dark');
             saveSettingsData({ theme });
         }
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
+
         function clearAllData() {
             if (confirm('Are you sure you want to clear all your data? This action cannot be undone.')) {
                 localStorage.clear();
