@@ -108,15 +108,17 @@
             <div id="calendar" class="page">
                 <div class="card">
                     <h2>Your Cycle Calendar</h2>
+                    <br>
                     <div class="calendar-header">
-                        <button class="nav-btn" onclick="changeMonth(-1)">← Prev</button>
+                        <button class="nav-btn changeMonth" onclick="changeMonth(-1)">← Prev</button>
                         <div class="calendar-month" id="current-month"></div>
-                        <button class="nav-btn" onclick="changeMonth(1)">Next →</button>
+                        <button class="nav-btn changeMonth" onclick="changeMonth(1)">Next →</button>
+                        </div>
                         <label class="toggle-label">
                             <input type="checkbox" id="show-predicted-periods" onchange="togglePredictedPeriods()">
                             Show Predicted Periods
                         </label>
-                    </div>
+                    
                     <div class="calendar-grid">
                         <div class="calendar-day-header">Sun</div><div class="calendar-day-header">Mon</div><div class="calendar-day-header">Tue</div>
                         <div class="calendar-day-header">Wed</div><div class="calendar-day-header">Thu</div><div class="calendar-day-header">Fri</div>

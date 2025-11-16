@@ -111,8 +111,38 @@
             .feature-card h3 { font-size: 1.3em; }
             .landing-footer { padding: 20px; font-size: 0.9em; }
             .hamburger { display: flex; position: absolute; top: 0; right: 0; }
+            .changeMonth { font-size: 0.6em; padding: 4px 10px; }
             .nav-menu { display: none; flex-direction: column; width: 100%; gap: 15px; margin-top: 15px; }
             .nav-menu.active { display: flex; }
-            .calendar-day { min-height: 50px; font-size: 0.9em; }
+            .calendar-day { min-height: 30px; font-size: 0.7em; }
+            .calendar-grid { gap: 3px; }
+            .calendar-day-header { padding: 3px; font-size: 0.8em; }
+            .calendar-header {  margin-bottom: 8px; }
+            .calendar-month { font-size: 0.7rem; min-width: auto; }
             .stats-grid { grid-template-columns: 1fr; }
+            .modal-content { padding: 30px; max-width: 90vw; }
+            .pattern-item { padding: 15px; }
+            .welcome-box { font-size: 1.1em; padding: 20px; }
+            .phase-badge { font-size: 1em; padding: 10px 25px; }
+            .prediction-box { padding: 20px; }
+            .tips-box { padding: 20px; }
+            .quote-box { padding: 20px; font-size: 1.1em; }
+            .form-group label { font-size: 0.95em; }
+            input, textarea, select { padding: 12px; font-size: 0.9em; }
+            .btn { padding: 12px 30px; font-size: 1em; }
+            .mood-selector { gap: 10px; }
+            .mood-option { font-size: 2.5em; }
+            .toggle-label { font-size: 0.9em; 
+                text-align: center;
+                margin-left:20px;
+                display: flex; align-items: center; gap: 3px;
+                 border: none;
+             }
+             #calendar h2 {
+                margin-bottom: 10px;
+                font-size: 1.5em;
+                text-align: center;
+             }
+             .toggle-label input { width: 10px; height: 10px; }
+            .symptom-checks { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
         }
